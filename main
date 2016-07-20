@@ -1,0 +1,167 @@
+#!/bin/bash
+
+function jumpto
+{
+    label=$1
+    cmd=$(sed -n "/$label:/{:a;n;p;ba};" $0 | grep -v ':$')
+    eval "$cmd"
+    exit
+}
+
+jumpto start
+
+start:
+clear
+asd() {
+cat <<"EOT"
+#############################################################################################
+#                                                                                           #
+#                               WELCOME TO YOUR DESTINEY...                                 #
+#                                                                                           #
+#                                                                                           #
+#                             HOW WILL YOU BEGIN YOUR JOURNEY?                              #
+#                                                                                           #
+#                                                                                           #
+#   1. ENTER YOUR NAME                                                                      #
+#   2. SELECT YOUR CHARACTER                                                                #
+#   3. BEGIN YOUR JOURNEY                                                                   #
+#                                                                                           #
+#                                                                                           #
+#                                                                                           #
+#                                                                                           #
+#                                                                                           #
+#    (SELECT A NUMBER AND PRESS [ENTER] TO BEGIN, OR JUST PRESS [ENTER] TO QUIT)            #
+#                                                                                           #
+#                                                                                           #
+#                                                                                           #
+#############################################################################################
+EOT
+}
+
+asd
+read input
+echo
+if [ $input == "1" ]; then
+	jumpto name
+elif [ $input == "2" ]; then
+	jumpto character
+elif [ $input == "3" ]; then
+	jumpto journey
+else exit
+fi
+
+name:
+clear
+echo
+echo
+echo
+echo "   WHAT WILL THEY CALL YOU?"
+read name1
+clear
+echo
+echo
+echo
+echo
+echo
+sleep 1
+echo "              So, $name1 is your name? [Y/N]"
+read yn
+
+if [ $yn == "y" ]; then
+	name=$name1
+	sleep 1
+	clear
+	echo
+	echo
+	echo
+	echo
+	echo
+	echo
+	echo
+	echo
+	echo
+	echo "       Great! Let's move on to choosing your character, $name!"
+	sleep 2
+	jumpto start
+elif [ $yn == "Y" ]; then
+	sleep 1
+	echo
+	echo
+	clear
+	echo "Great! Let's move on to choosing your character, $name!"
+	sleep 2
+	jumpto start
+else
+	sleep 2
+	jumpto name
+fi
+
+character:
+clear
+echo
+echo
+echo
+echo "   Who will you be?"
+echo
+echo
+echo
+echo
+asd() {
+cat <<"EOT"
+####################################################################
+#                                                                  #
+#                   Select your Character Type                     #
+#                                                                  #
+#                                                                  #
+#                     Where shall we start?                        #
+#                                                                  #
+#                                                                  #
+#   1. GENDER                                                      #
+#   2. SELECT YOUR CLASS                                           #
+#   3. sELECT YOUR RACE                                            #
+#                                                                  #
+#    (SELECT A NUMBER AND PRESS [ENTER] TO BEGIN,                  #
+#     OR JUST PRESS [ENTER] TO QUIT)                               #
+#                                                                  #
+#                                                                  #
+####################################################################
+EOT
+}
+
+asd
+read input
+echo
+if [ $input == "1" ]; then
+	jumpto gender
+elif [ $input == "2" ]; then
+	jumpto class
+elif [ $input == "3" ]; then
+	jumpto race
+else exit
+fi
+
+gender:
+clear
+echo
+echo
+echo
+echo "             So which will it be?"
+echo
+echo 
+echo "             1. MALE"
+echo "             2. FEMALE"
+echo "             3. NOT SURE"
+
+
+class:
+
+race:
+
+
+
+
+
+
+
+
+journey:
