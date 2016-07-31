@@ -8,6 +8,13 @@ function jumpto
     exit
 }
 
+main() {
+	case $1 in
+		gender)
+			gender;;
+	esac
+}
+
 jumpto start
 
 start:
@@ -140,18 +147,24 @@ elif [ $input == "3" ]; then
 else exit
 fi
 
-gender:
-clear
-echo
-echo
-echo
-echo "             So which will it be?"
-echo
-echo 
-echo "             1. MALE"
-echo "             2. FEMALE"
-echo "             3. NOT SURE"
-
+gender() {
+	clear
+	printf "\n\n\n             So which will it be?\n\n\n"
+	printf "             1. MALE\n"
+	printf "             2. FEMALE\n"
+	printf "             3. NOT SURE\n"
+	read GENDER
+	case "${GENDER}" in
+		1|MALE|male)
+			GENDER='male';;
+		2|FEMALE|female)
+			GENDER='female';;
+		3|'not sure'|'NOT SURE')
+			GENDER='unsure';;
+		*)
+			gender;;
+	esac
+}
 
 class:
 
